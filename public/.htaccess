@@ -1,0 +1,9 @@
+# Route everything that is not a real file through index.php
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+# Fallback for servers without mod_rewrite
+DirectoryIndex index.php
