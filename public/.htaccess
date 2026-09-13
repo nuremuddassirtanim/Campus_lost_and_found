@@ -1,6 +1,6 @@
 # Route everything that is not a real file through index.php
 RewriteEngine On
-RewriteBase /
+RewriteBase /Campus_lost_and_found/public/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

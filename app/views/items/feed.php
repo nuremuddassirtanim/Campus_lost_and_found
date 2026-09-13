@@ -19,12 +19,7 @@
       <?php foreach ($categories as $c): ?>
         <option value="<?= htmlspecialchars($c) ?>"><?= htmlspecialchars($c) ?></option>
       <?php endforeach; ?>
-    </select>
-    <select class="input" name="sort" data-filter>
-      <option value="new">Newest first</option>
-      <option value="old">Oldest first</option>
-    </select>
-  </form>
+    </select>  </form>
 
   <div class="grid" id="feed">
     <?php foreach ($items as $i): ?>

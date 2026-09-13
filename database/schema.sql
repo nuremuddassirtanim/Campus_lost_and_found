@@ -1,7 +1,7 @@
 -- AIUB Lost & Found — schema + seed
 -- Import this file in phpMyAdmin (Import tab). It creates the database and all tables.
 
-CREATE DATABASE IF NOT EXISTS aiub_lostfound
+CREATE DATABASE IF NOT EXISTS 
   CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE aiub_lostfound;
 

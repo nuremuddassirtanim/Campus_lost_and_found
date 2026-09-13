@@ -10,7 +10,9 @@ final class Config
             $file = __DIR__ . '/../config/config.sample.php';
         }
         self::$data = require $file;
-        self::$data['app']['base_url'] = self::detectBaseUrl();
+        if (empty(self::$data['app']['base_url'])) {
+            self::$data['app']['base_url'] = self::detectBaseUrl();
+        }
     }
 
     public static function get(string $path, $default = null)
@@ -25,10 +27,16 @@ final class Config
         return $node;
     }
 
-    /** Works both at a domain root and in a subfolder like /lostfound-php/public. */
     private static function detectBaseUrl(): string
     {
-        $script = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/'));
-        return rtrim($script, '/');
+        $script = $_SERVER['SCRIPT_NAME'] ?? $_SERVER['PHP_SELF'] ?? '/index.php';
+        $base   = rtrim(str_replace('\\', '/', dirname($script)), '/');
+        if ($base === '' && !empty($_SERVER['REQUEST_URI'])) {
+            $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
+            if (preg_match('#^(/.*?/public)(/|$)#', $path, $m)) {
+                $base = $m[1];
+            }
+        }
+        return $base === '/' ? '' : $base;
     }
 }

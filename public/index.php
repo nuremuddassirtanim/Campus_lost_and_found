@@ -24,7 +24,7 @@ if (!Session::user() && !empty($_COOKIE['lf_remember'])) {
 
 $router = new Router();
 
-$router->get('/',                    'HomeController@index');
+$router->get('/','HomeController@index');
 $router->get('/item/{id}',           'ItemController@show');
 $router->get('/report',              'ItemController@create');
 $router->get('/mine',                'ItemController@mine');
